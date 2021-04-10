@@ -10,17 +10,18 @@ namespace LibraryService.Controllers
     {
         private readonly IBookRepository _bookRepository;
 
-        //public BooksController(IBookRepository bookRepository)
-        //{
-        //    _bookRepository = bookRepository;
-        //}
+        public BooksController(IBookRepository bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
 
         // As From UI I have to inject Concrete class here BookRepository, but UI is not ready so I am doing it inside constructor,
         //later I will uncomment the upper constructor.
-        public BooksController()
-        {
-            _bookRepository = new BookRepository();
-        }
+
+        //public BooksController()
+        //{
+        //    _bookRepository = new BookRepository();
+        //}
 
         public IEnumerable<Book> Get()
         {

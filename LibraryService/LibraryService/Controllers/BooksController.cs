@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using LibraryServices.Data.Interfaces;
 using LibraryServices.Data.Models;
 
 namespace LibraryService.Controllers
 {
+    [EnableCors(origins:"*",headers:"*",methods:"*")]
     public class BooksController : ApiController
     {
         private readonly IBookRepository _bookRepository;
@@ -44,7 +46,7 @@ namespace LibraryService.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteBook(int id)
+        public IHttpActionResult Delete(int id)
         {
             bool result = _bookRepository.RemoveBook(id);
             if (result)
@@ -55,9 +57,9 @@ namespace LibraryService.Controllers
             return NotFound();
         }
         [HttpPut]
-        public IHttpActionResult UpdateBook(int id, Book book)
+        public IHttpActionResult Update(Book book)
         {
-            IEnumerable<Book> books = _bookRepository.UpdateBook(id, book);
+            IEnumerable<Book> books = _bookRepository.UpdateBook(book.Id, book);
             if (books != null)
             {
                 return Ok(books);

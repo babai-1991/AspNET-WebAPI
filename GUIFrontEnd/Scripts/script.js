@@ -24,7 +24,6 @@
 
         $.ajax(serviceUrl + '/books')
             .done((data) => {
-                debugger;
                 DisplayResult1("Get All:", data);
                 console.log(data);
             }).fail((error) => {
@@ -35,9 +34,9 @@
     });
 
     $('#GetById').on('click', () => {
-        var bookId = $('#id').val();
+        var bookId = $('#Id').val();
 
-        $.ajax(serviceUrl + '/books/ ' + bookId)
+        $.ajax(serviceUrl + '/books/' + bookId)
             .done((data) => {
                 DisplayResult2("Book by id:", data);
                 console.log(data);
@@ -52,14 +51,17 @@
     $('#AddBook').on('click', () => {
         var inputData = $('input').serialize();
         $.ajax({
-            url: serviceUrl + '/books/',
+            url: serviceUrl + '/books/PostBook',
             type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(inputData)
+            contentType: 'application/x-www-form-urlencoded',
+            data: inputData
         }).done((data) => {
-            DisplayResult2("Add Book", data);
-            console.log(data);
-
+            try {
+                DisplayResult2("Add Book", data);
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
         }).fail((error) => {
             console.log(error);
 
@@ -71,10 +73,11 @@
     //using callback
     $('#UpdateBook').on('click', function () {
         var inputData = $('input').serialize();
-        var bookId = $('#id').val();
+        var bookId = $('#Id').val();
         $.ajax({
-            url: serviceUrl + '/books/' + bookId,
+            url: serviceUrl + '/books/Update',
             method: 'PUT',
+            contentType: 'application/x-www-form-urlencoded',
             data: inputData,
             success: function (data) {
                 DisplayResult1("Updated list:", data);
@@ -83,18 +86,21 @@
     });
 
     //using callback
-    $('#AddCost').on('click', function () {
-        var inputData = $('input').serialize();
-        var bookId = $('#BookId').val();
-        //alert(bookId);
-        $.ajax({
-            url: serviceUrl + '/books/updatecost/' + bookId,
-            method: 'PUT',
-            data: inputData,
-            success: function (data) {
-                DisplayResult2("Add Cost", data);
-            }
-        });
-    });
+    $('#DeleteBook').on('click', function () {
+        var bookId = $('#Id').val();
 
+        $.ajax({
+
+            url: serviceUrl + "/books/" + bookId,
+            type: 'DELETE'
+
+        })
+            .done((data) => {
+                console.log(data);
+            }).fail((error) => {
+                console.log('error');
+            }).always(() => {
+                console.log('Inside always method');
+            });
+    });
 });

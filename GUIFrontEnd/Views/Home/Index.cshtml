@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Inputs</h2>
+        <input type="text" name="Id" id="Id" class="form-control" placeholder="Id" />
+        <input type="text" name="Title" id="Title" class="form-control" placeholder="Title of the book" />
+        <input type="text" name="Author" id="Author" class="form-control" placeholder="Author of the book" />
+        <input type="text" name="PublicationYear" id="PublicationYear" class="form-control" placeholder="PublicationYear of the book" />
+        <input type="text" name="IsAvailable" id="IsAvailable" class="form-control" placeholder="Availability" />
+        <input type="text" name="CallNumber" id="CallNumber" class="form-control" placeholder="CallNumber of the book" />
+    </div>
+    <div class="col-md-3">
+        <h2>Actions</h2>
+        <button type="button" id="GetAll" class="btn btn-default">
+            Get All Books
+        </button>
+        <br />
+        <br />
+        <button type="button" id="GetById" class="btn btn-default">
+            Get By Id
+        </button>
+        <br />
+        <br />
+        <button type="button" id="AddBook" class="btn btn-default">
+            Insert Book
+        </button>
+        <br />
+        <br />
+        <button type="button" id="UpdateBook" class="btn btn-default">
+            Update Book
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Results</h1>
+            <p id="result"></p>
+        </div>
+    </div>
+</div>

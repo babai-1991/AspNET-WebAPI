@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIFrontEnd", "GUIFrontEnd.csproj", "{AE63CADA-F9B0-4E9B-B39F-B4E8C565A6D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE63CADA-F9B0-4E9B-B39F-B4E8C565A6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE63CADA-F9B0-4E9B-B39F-B4E8C565A6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE63CADA-F9B0-4E9B-B39F-B4E8C565A6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE63CADA-F9B0-4E9B-B39F-B4E8C565A6D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2484547F-C044-4989-8613-E467F3EF5598}
+	EndGlobalSection
+EndGlobal

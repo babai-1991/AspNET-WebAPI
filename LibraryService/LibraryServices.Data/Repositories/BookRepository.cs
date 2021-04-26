@@ -5,7 +5,7 @@ using LibraryServices.Data.Models;
 
 namespace LibraryServices.Data.Repositories
 {
-    public class BookRepository:IBookRepository
+    public class BookRepository : IBookRepository
     {
         public IEnumerable<Book> Books = new List<Book>()
         {
@@ -65,6 +65,32 @@ namespace LibraryServices.Data.Repositories
 
         public IEnumerable<Book> GetAllBooks()
         {
+            return Books;
+        }
+
+        public bool AddBook(Book book)
+        {
+            Books.ToList().Add(book);
+            return true;
+        }
+
+        public bool RemoveBook(int id)
+        {
+            Book deleteBook = GetBook(id);
+            if (deleteBook != null)
+            {
+                Books.ToList().Remove(deleteBook);
+                return true;
+            }
+            return false;
+        }
+
+        public IEnumerable<Book> UpdateBook(int id, Book book)
+        {
+            if (RemoveBook(id))
+            {
+                AddBook(book);
+            }
             return Books;
         }
     }

@@ -2,7 +2,6 @@
 using System.Web.Http;
 using LibraryServices.Data.Interfaces;
 using LibraryServices.Data.Models;
-using LibraryServices.Data.Repositories;
 
 namespace LibraryService.Controllers
 {
@@ -15,19 +14,13 @@ namespace LibraryService.Controllers
             _bookRepository = bookRepository;
         }
 
-        // As From UI I have to inject Concrete class here BookRepository, but UI is not ready so I am doing it inside constructor,
-        //later I will uncomment the upper constructor.
-
-        //public BooksController()
-        //{
-        //    _bookRepository = new BookRepository();
-        //}
-
+        [HttpGet]
         public IEnumerable<Book> Get()
         {
             return _bookRepository.GetAllBooks();
         }
 
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             Book book = _bookRepository.GetBook(id);
@@ -35,7 +28,41 @@ namespace LibraryService.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(book);
+        }
+
+        [HttpPost]
+        public IHttpActionResult PostBook(Book book)
+        {
+            bool result = _bookRepository.AddBook(book);
+            if (result)
+            {
+                return Ok(book);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteBook(int id)
+        {
+            bool result = _bookRepository.RemoveBook(id);
+            if (result)
+            {
+                return Ok(_bookRepository.GetAllBooks());
+            }
+
+            return NotFound();
+        }
+        [HttpPut]
+        public IHttpActionResult UpdateBook(int id, Book book)
+        {
+            IEnumerable<Book> books = _bookRepository.UpdateBook(id, book);
+            if (books != null)
+            {
+                return Ok(books);
+            }
+            return NotFound();
         }
     }
 }

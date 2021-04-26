@@ -7,6 +7,8 @@ namespace LibraryServices.Data.Interfaces
     {
         Book GetBook(int id);
         IEnumerable<Book> GetAllBooks();
-
+        bool AddBook(Book book);
+        bool RemoveBook(int id);
+        IEnumerable<Book> UpdateBook(int id, Book book);
     }
 }

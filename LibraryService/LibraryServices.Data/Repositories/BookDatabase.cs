@@ -46,5 +46,22 @@ namespace LibraryServices.Data.Repositories
             }
             return GetAllBooks();
         }
+
+        public List<Book> GetBookByAuthor(string authorName)
+        {
+            List<Book> books = _libraryContext.Books.Where(b => b.Author.Contains(authorName)).ToList();
+            return books;
+        }
+
+        public string GetAuthorByBookId(int bookid)
+        {
+            return _libraryContext.Books.FirstOrDefault(b => b.Id == bookid)?.Author;
+        }
+
+        public Book GetBookByAuthorAndYear(string author, int year)
+        {
+            Book book = _libraryContext.Books.FirstOrDefault(b =>b.Author.Contains(author) && b.PublicationYear==year);
+            return book;
+        }
     }
 }

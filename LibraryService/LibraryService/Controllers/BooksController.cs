@@ -6,7 +6,7 @@ using LibraryServices.Data.Models;
 
 namespace LibraryService.Controllers
 {
-    [EnableCors(origins:"*",headers:"*",methods:"*")]
+    [EnableCors(origins: "https://localhost:44346", headers:"*",methods:"*")]
     public class BooksController : ApiController
     {
         private readonly IBookRepository _bookRepository;
@@ -65,6 +65,44 @@ namespace LibraryService.Controllers
                 return Ok(books);
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        [Route("api/books/author/{id}")]
+        [Route("api/books/{id}/author")]
+        public IHttpActionResult GetAuthorByBookId(int id)
+        {
+            string authorName = _bookRepository.GetAuthorByBookId(id);
+            if (authorName==null)
+            {
+                return NotFound();
+            }
+
+            return Ok(authorName);
+        }
+        [HttpGet]
+        [Route("api/books/authorname/{authorname}")]
+        public IHttpActionResult GetBookByAuthor(string authorname)
+        {
+            List<Book> books = _bookRepository.GetBookByAuthor(authorname);
+            if (books == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(books);
+        }
+        [HttpGet]
+        [Route("api/books/{authorName}/{year}")]
+        public IHttpActionResult GetBookByAuthorAndYear(string authorName, int year)
+        {
+            Book book = _bookRepository.GetBookByAuthorAndYear(authorName,year);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(book);
         }
     }
 }

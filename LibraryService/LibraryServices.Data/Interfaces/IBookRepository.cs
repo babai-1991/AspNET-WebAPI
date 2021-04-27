@@ -10,5 +10,9 @@ namespace LibraryServices.Data.Interfaces
         bool AddBook(Book book);
         bool RemoveBook(int id);
         IEnumerable<Book> UpdateBook(int id, Book book);
+
+        List<Book> GetBookByAuthor(string authorName);
+        string GetAuthorByBookId(int bookid);
+        Book GetBookByAuthorAndYear(string author, int year);
     }
 }

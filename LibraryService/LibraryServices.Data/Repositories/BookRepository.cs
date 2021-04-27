@@ -108,5 +108,10 @@ namespace LibraryServices.Data.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        public Book AddCost(int bookid, Cost cost)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

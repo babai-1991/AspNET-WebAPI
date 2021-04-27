@@ -104,5 +104,18 @@ namespace LibraryService.Controllers
 
             return Ok(book);
         }
+
+        [HttpPut]
+        [Route("api/books/UpdateCost/{id}")]
+        public IHttpActionResult AddCost(int id,Cost cost)
+        {
+            Book book = _bookRepository.AddCost(id, cost);
+            if (book!=null)
+            {
+                return Ok(book);
+            }
+
+            return NotFound();
+        }
     }
 }

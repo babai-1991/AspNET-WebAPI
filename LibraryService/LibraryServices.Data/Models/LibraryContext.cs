@@ -6,8 +6,10 @@ namespace LibraryServices.Data.Models
     {
         public LibraryContext() : base("LibraryContext")
         {
-
+            // drop and re-create the database
+            Database.SetInitializer<LibraryContext>(new DropCreateDatabaseIfModelChanges<LibraryContext>());
         }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Cost> Costs { get; set; }
     }
 }

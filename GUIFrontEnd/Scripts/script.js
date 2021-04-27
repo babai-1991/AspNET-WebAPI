@@ -103,4 +103,29 @@
                 console.log('Inside always method');
             });
     });
+
+    //AddCost
+    $('#AddCost').on('click', () => {
+        debugger;
+        var inputData = $('input').serialize();
+        var bookId = $('#bookid').val();
+        $.ajax({
+            url: serviceUrl + '/books/UpdateCost/' + bookId,
+            type: 'PUT',
+            contentType: 'application/x-www-form-urlencoded',
+            data: inputData
+        }).done((data) => {
+            try {
+                DisplayResult2("Update", data);
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+        }).fail((error) => {
+            console.log(error);
+
+        }).always(() => {
+            console.log('I will be execute no matter what');
+        });
+    });
 });

@@ -63,5 +63,13 @@ namespace LibraryServices.Data.Repositories
             Book book = _libraryContext.Books.FirstOrDefault(b =>b.Author.Contains(author) && b.PublicationYear==year);
             return book;
         }
+
+        public Book AddCost(int bookid, Cost cost)
+        {
+            Book book = GetBook(bookid);
+            book.Cost = cost;
+            _libraryContext.SaveChanges();
+            return book;
+        }
     }
 }
